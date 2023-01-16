@@ -117,7 +117,9 @@ async def test_verify_redirect_uri():
         assert not await indieauth.verify_redirect_uri(
             None, "http://ex.com", "http://different.com/callback"
         )
-
+        #
+        #
+        #
         # Different scheme
         assert not await indieauth.verify_redirect_uri(
             None, "http://ex.com", "https://ex.com/callback"
