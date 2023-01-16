@@ -128,6 +128,19 @@ async def test_verify_redirect_uri():
             None, "https://sub1.ex.com", "https://sub2.ex.com/callback"
         )
 
+        # client_id and redirect_uri valid
+        assert indieauth.verify_redirect_uri(
+            None, "https://home-assistant.io/iOS", "homeassistant://auth-callback"
+        )
+        # client_id and redirect_uri valid
+        assert indieauth.verify_redirect_uri(
+            None, "https://home-assistant.io/android", "homeassistant://auth-callback"
+        )
+        # client_id and redirect_uri invalid
+        assert not await indieauth.verify_redirect_uri(
+            None, "www.google.com.br", "www.facebook.br"
+        )
+
 
 async def test_find_link_tag(hass, mock_session):
     """Test finding link tag."""
